@@ -25,6 +25,7 @@ button{
 }
 
 .submit:hover{
+    cursor: grabbing;
     border: solid 3px rgb(221, 25, 25);
     box-shadow: 0 0 10px rgb(221, 25, 25);
 }
@@ -59,7 +60,7 @@ button{
     color: white;
     align-self: center;
     margin-bottom: 100px;
-
+    transition: all .8s;
 }
 
 #display{
@@ -68,7 +69,7 @@ button{
     width: 250px;
     border: solid 2px white;
     box-shadow: 0 0 4px white;
-    border-radius: 20px;
+    border-radius: 25px;
     background-color: transparent;
     font-family: 'Quicksand', sans-serif;
     font-weight: bold;

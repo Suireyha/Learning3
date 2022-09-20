@@ -1,5 +1,59 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+
 body{
-    background-color: #212121;
+    background-color: #121212;
+}
+
+button{
+    height: 40px;
+    width: 40px;
+    margin: 0 6px 0 6px;
+    border-radius: 20px;
+    border: solid 2px rgb(184, 89, 207);
+    box-shadow: 0 0 5px rgb(184, 89, 207);
+    background-color: transparent;
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+
+    transition: all .3s;
+}
+
+button:hover{
+    border: solid 2px rgb(175, 52, 206);
+    box-shadow: 0 0 10px rgb(175, 52, 206);
+}
+
+.equals{
+    border: solid 2px rgb(78, 207, 129);
+    box-shadow: 0 0 5px rgb(78, 207, 129);
+}
+
+.equals:hover{
+    border: solid 2px rgb(38, 218, 110);
+    box-shadow: 0 0 10px rgb(38, 218, 110);
+}
+
+.operator{
+    border: solid 2px rgb(61, 153, 228);
+    box-shadow: 0 0 5px rgb(61, 153, 228);
+}
+
+.operator:hover{
+    border: solid 2px rgb(27, 135, 223);
+    box-shadow: 0 0 10px rgb(27, 135, 223);
+}
+
+.clear{
+    align-self: flex-end;
+    border: solid 2px rgb(228, 61, 61);
+    box-shadow: 0 0 5px rgb(228, 61, 61);
+}
+
+.clear:hover{
+    border: solid 2px rgb(221, 25, 25);
+    box-shadow: 0 0 10px rgb(221, 25, 25);
 }
 
 .uni{
@@ -10,12 +64,18 @@ body{
 }
 
 .cont{
-    background-color: #313131;
+    background-color: #191919;
     flex-direction: column;
     align-self: center;
     display: flex;
     padding: 20px;
     gap: 10px;
+    border-radius: 20px;
+}
+
+.upper{
+    display: flex;
+    flex-direction: column;
 }
 
 .buttons{
@@ -23,6 +83,20 @@ body{
     justify-content: space-between;
 }
 
-.equals{
-    margin-left: 55px;
+#display{
+    margin-bottom: 25px;
+    height: 40px;
+    width: 250px;
+    border: solid 2px white;
+    box-shadow: 0 0 4px white;
+    border-radius: 20px;
+    background-color: transparent;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+    outline: none;
+    padding-left: 10px;
+
+    transition: all .3s;
 }

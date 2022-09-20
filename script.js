@@ -6,46 +6,21 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function result(isPalindrome){
+function fib(int){
+
+    let sequence = [];
     
-    if (isPalindrome){
-        label.setAttribute('style', 'color: lime; font-size: 30px;');
-        display.setAttribute('style', 'border: solid 3px lime; box-shadow: 0 0 5px lime');
-        label.textContent = "Palindrome!";
-        await sleep(900);
-        label.setAttribute('style', 'color: white; font-size: 25px;');
-        display.setAttribute('style', 'border: solid 2px white; box-shadow: 0 0 4px white');
-        label.textContent = "Palindrome?";
+    for (var i = 0; i < int; i++){
+        if(i < 2){
+            sequence[i] = 1;
+        }
+        else{
+            sequence[i] = (sequence[i - 1] + sequence[i - 2]);
+        }
     }
 
-    else{
-        label.setAttribute('style', 'color: red; font-size: 30px;');
-        display.setAttribute('style', 'border: solid 3px red; box-shadow: 0 0 5px red');
-        label.textContent = "Palindrome.";
-        await sleep(900);
-        label.setAttribute('style', 'color: white; font-size: 25px;');
-        display.setAttribute('style', 'border: solid 2px white; box-shadow: 0 0 4px white');
-        label.textContent = "Palindrome?";
-    }
-
+    display.value = (sequence[sequence.length - 1]);
 }
 
-function palindrome(str){
 
-    var temp = [];
-    for (var i = 0; i < str.length; i++){
-        temp[i] = str[str.length - (1 + i)];
-    }
-    var com = temp.join("");
-    console.log(com);
-    if (com == str){
-        console.log("True");
-        return true;
-    }
-    console.log("False");
-    return false;
-}
-
-submit.addEventListener('click', ()=>{
-    result(palindrome(display.value))
-});
+submit.addEventListener('click', ()=>{fib(display.value)});

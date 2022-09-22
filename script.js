@@ -40,10 +40,6 @@ function operate(operator, a, b){
     display.value = (calculator[operator](a, b));
 }
 
-let caleb = [0, 1, 2, 1, 4, 5];
-console.log(caleb.find(el => el == 4 | el == 5));
-
-
 clear.addEventListener('click', ()=>{
     display.value = "";
 });
@@ -67,8 +63,6 @@ equals.addEventListener('click', ()=>{
     ind = uInput.indexOf(operation);
     var operand1 = uInput.substring(0, ind);
 
-    console.log(operation);
-
     while (operation != -1){
         
         console.log(operation);
@@ -84,6 +78,8 @@ equals.addEventListener('click', ()=>{
 
         console.log(operand1);
         console.log(operand2);
+
+        console.log(uInput[operation]);
 
         switch(uInput[operation]){
             case '+':

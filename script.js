@@ -9,10 +9,6 @@ let display = document.querySelector('#display');
 let clear = document.querySelector('.clear');
 
 var uInput = "";
-var uAdd = false;
-var uMinus = false;
-var uMultiply = false;
-var uDivide = false;
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -37,50 +33,86 @@ let calculator = {
 };
 
 function operate(operator, a, b){
-    display.value = (calculator[operator](a, b));
+    return (calculator[operator](a, b));
 }
 
 clear.addEventListener('click', ()=>{
     display.value = "";
 });
 
+function getIndex(element){
+    if (element > 0){
+
+    }
+}
+
+let example = "2+3";
+console.log(example.substring(2));
+
 equals.addEventListener('click', ()=>{
-    var operation;
-    var next;
+    var operation = -1;
+    var next = -1;
     var total;
+    var isOperator;
     let copy = display.value;
     uInput = display.value;
-    display.value = null;
+    //display.value = null;
     
-    
+    /*Disgusting code that figures out the index of the first operator
+    *Iterate through each element, if it's an operator then save its value*/
+    for (var i = 0; i < uInput.length; i++) {
+        if (uInput.charAt(i) == "+" | uInput.charAt(i) == "-" |
+        uInput.charAt(i) == "*" | uInput.charAt(i) == "/"){
+            isOperator = true;
+            if (operation < i){
+                operation = uInput.charAt(i);
+            }
+        } 
+    };
 
-    operation = uInput.indexOf("+", "-", "*", "/");
+    //If there was no operator, just leave here
+    if (isOperator == false){
+        display.value = "Projectile invalid";
+        return;
+    }
 
-    copy = copy.slice(copy.indexOf(operation));
+    console.log(operation);
 
-    next = copy.indexOf("+", "-", "*", "/");
+    //copy is the array after the first operator
+    copy = copy.slice(copy.indexOf(operation) + 1);
 
-    ind = uInput.indexOf(operation);
+    //If there's a second operator, find it and save it's value
+    for (var i = 0; i < copy.length; i++) {
+        if (copy.charAt(i) == "+" | copy.charAt(i) ==  "-" |
+        copy.charAt(i) ==  "*" | copy.charAt(i) ==  "/"){
+            if (next < i){
+                next = copy.charAt(i);
+            }
+        } 
+    };
+
+
+    let ind = uInput.indexOf(operation);
+    let ind2 = uInput.indexOf(next);
+
     var operand1 = uInput.substring(0, ind);
+    console.log(operand1);
 
-    while (operation != -1){
-        
-        console.log(operation);
+    while (uInput.indexOf(operation) > -1){
 
-        console.log(next);
+        ind = uInput.indexOf(operation);
 
         if (next == -1){
-            var operand2 = uInput.substring(ind + 1, uInput.length);
+            var operand2 = uInput.substring(ind + 1);
         }
         else{
-            var operand2 = uInput.substring(ind + 1, next);
+            var operand2 = uInput.substring(ind, ind2);
         }
 
-        console.log(operand1);
-        console.log(operand2);
+        total =+ operate(operation, (+operand1), (+operand2));
+        operand1 = total;
 
-        console.log(uInput[operation]);
-
+        /*
         switch(uInput[operation]){
             case '+':
                 total += operate('+', operand1, operand2);
@@ -101,24 +133,36 @@ equals.addEventListener('click', ()=>{
             default:
                 console.log("Not an operator");
         }
+        */
 
-        operation = copy.indexOf("+", "-", "*", "/");
+        copy = copy.slice(copy.indexOf(operation + 1));
 
-        copy = copy.slice(copy.indexOf(operation));
+        operation = next;
+        next = -1;
 
-        next = copy.indexOf("+", "-", "*", "/");
+        
+        for (var i = 0; i < copy.length; i++) {
+            if (copy.charAt(i) == "+" | copy.charAt(i) == "-" | 
+            copy.charAt(i) == "*" | copy.charAt(i) == "/"){
+                if (next < i){
+                    next = copy.charAt(i);
+                }
+            } 
+        };
 
     }
 
     display.value = total;
 });
 
+//Make numbers actually display to the calculator
 numberButton.forEach(el =>{
     el.addEventListener('click', (e)=>{
         display.value += e.target.innerText
     });
 });
 
+//Make operators actually display to the calculator
 operatorButtons.forEach(el =>{
     el.addEventListener('click', (e)=>{
         switch (e.target.innerText){
